@@ -1,4 +1,4 @@
-/var/log/hello-karyon-rxnetty/hello.log {
+/var/log/hello-world/hello.log {
     copytruncate
     daily
     rotate 10

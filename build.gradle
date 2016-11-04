@@ -84,14 +84,14 @@ task packDeb(type: Deb, dependsOn: fatJar) {
   postInstall = file('pkg_scripts/postInstall.sh')
   postUninstall = file('pkg_scripts/postUninstall.sh')
 
-  from(file('pkg_scripts/hello-karyon-rxnetty.conf')) {
+  from(file('pkg_scripts/hello-world.conf')) {
     into('/etc/init')
     user = 'root'
     permissionGroup = 'root'
     fileType = CONFIG | NOREPLACE
   }
 
-  from(file('pkg_scripts/hello-karyon-rxnetty')) {
+  from(file('pkg_scripts/hello-world')) {
     into('/etc/logrotate.d')
     user = 'root'
     permissionGroup = 'root'

@@ -1,9 +1,7 @@
 #!/bin/bash
 
 # create log folder
-install  --mode=755 --directory  /var/log/hello-karyon-rxnetty
+install  --mode=755 --directory  /var/log/hello-world
 
 # start services
-start hello-karyon-rxnetty
-
-
+start hello-world
