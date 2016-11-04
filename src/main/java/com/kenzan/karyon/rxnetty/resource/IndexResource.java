@@ -49,17 +49,20 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                 .flatMap(new Func1<String, Observable<Void>>() {
                     @Override
                     public Observable<Void> call(String body) {
-                        String instanceId = "";
-                        String userdata = "";
+                        //String instanceId = "";
+                        String instanceName = "";
+                        //String userdata = "";
 
                         try{
-                            instanceId = execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google") + execCmd("wget -q -O - http://instance-data/latest/meta-data/instance-id");
-                            userdata = System.getenv("USERDATA");
+                            //instanceId = execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google") + execCmd("wget -q -O - http://instance-data/latest/meta-data/instance-id");
+                            instanceName = execCmd("curl http://metadata/computeMetadata/v1/instance/hostname -H Metadata-Flavor:Google");
+                            //userdata = System.getenv("USERDATA");
 
                         } catch (Exception e){
                             e.printStackTrace();
                         }
-                        response.writeString("<html><head><style>body{text-align:center;font-family:'Lucida Grande'}</style></head><body><img src='http://www.homedepot.ca/is/image/content/dam/thdc/logo/hd-logo-200x200.jpg' /><h2>Example Spinnaker Application</h2><h3>Instance Id " + instanceId + "</h3><h3>$USERDATA ENV VAR: " + userdata + "</h3></body></html>");
+                        //response.writeString("<html><head><style>body{text-align:center;font-family:'Lucida Grande'}</style></head><body><img src='http://www.homedepot.ca/is/image/content/dam/thdc/logo/hd-logo-200x200.jpg' /><h2>Example Spinnaker Application</h2><h3>Instance Name " + instanceId + "</h3><h3>$USERDATA ENV VAR: " + userdata + "</h3></body></html>");
+                        response.writeString("<html><head><style>body{text-align:center;font-family:'Lucida Grande'}</style></head><body><img src='http://www.homedepot.ca/is/image/content/dam/thdc/logo/hd-logo-200x200.jpg' /><h2>Example Spinnaker Application</h2><h3>Instance Name " + instanceName + "</h3></body></html>");
                         return response.close();
                     }
                 });
